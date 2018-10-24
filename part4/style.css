@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#view-box {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+}
+
+
+/*****************************************************
+    prologue style
+ ****************************************************/
+
+.prologue {
+    position: absolute;
+    left: 0; top: 0;
+    width: 200%; height: 100%;
+}
+
+/* 通用 word-1 word-2 */
+.prologue .word {
+    display: flex;
+    position: absolute;
+    top: calc(50% - 60px);
+    height: 120px;
+}
+
+.prologue .word div {
+    width: 120px; height: 120px;
+    border: 1px dashed #888888;
+    border-right: none;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.prologue .word div:last-child {
+    border-right: 1px dashed #888888;
+}
+
+.prologue .word div p {
+    font-size: 80px;
+    color: #777777;
+    line-height: 120px;
+    opacity: 0;
+}
+
+/* word-1 */
+.prologue .word-1 { left: calc(25% - 240px); }
+
+/* word-2 */
+.prologue .word-2 { right: 80px; }
+
+/* content-line */
+.prologue .content-line {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+}
+
+.prologue .content-line .point {
+    position: absolute;
+    top: calc(50% + 90px);
+    width: 20px; height: 20px;
+    background-color: #666666;
+    border-radius: 50%;
+}
+
+.prologue .content-line .point-1 { left: calc(25% - 250px); }
+.prologue .content-line .point-2 { left: calc(25% + 230px); }
+.prologue .content-line .point-3 { right: 70px; transform: scale(0); }
+
+.prologue .content-line .line {
+    position: absolute;
+    top: calc(50% + 99px);
+    height: 1px;
+    overflow: hidden;
+}
+
+.prologue .content-line .line::after {
+    content: ""; display: block;
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: #666666;
+    transform: translateX(-100%);
+}
+
+.prologue .content-line .line-1 { width: 480px; left: calc(25% - 240px); }
+.prologue .content-line .line-2 { width: calc((50% - 480px) + (50% - 80px)); right: 80px; }
+
+
+/*****************************************************
+    episode style
+ ****************************************************/
+
+.episode {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+.episode .message-panel {
+    position: absolute;
+    top: calc(50% - 180px); right: 80px;
+    width: 360px; height: 360px;
+    transform: rotate(90deg);
+}
+
+.episode .message-panel .message-item {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+}
+
+.episode .message-panel .message-item .char {
+    float: left;
+    width: 170px; height: 170px;
+    line-height: 170px;
+    font-size: 150px;
+    text-align: center;
+    opacity: 0;
+}
+
+.episode .message-panel .message-item .char:nth-child(1),
+.episode .message-panel .message-item .char:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+.episode .message-panel .message-item .char:nth-child(2n-1) {
+    margin-left: 20px;
+}
+
+.episode .message-panel .message-item .text {
+    position: absolute; display: block;
+    top: 165px; left: 40px;
+    width: 320px; height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    color: #555555;
+    opacity: 0;
+}
+
+.episode .message-panel .message-item::after {
+    content: ""; display: block;
+    width: 15px; height: 100%;
+    background-color: #5D97BD;
+    opacity: 0;
+}
+
+
+
+
+/*****************************************************
+    anaimtion
+ ****************************************************/
+
+/* show word-1 */
+.prologue .word-1 div:nth-child(1) p { animation: showWord 0.6s ease-out forwards; }
+.prologue .word-1 div:nth-child(2) p { animation: showWord 0.6s ease-out 0.2s forwards; }
+.prologue .word-1 div:nth-child(3) p { animation: showWord 0.6s ease-out 0.4s forwards; }
+.prologue .word-1 div:nth-child(4) p { animation: showWord 0.6s ease-out 0.6s forwards; }
+
+/* show line-1 */
+.prologue .content-line .line-1::after { animation: showLine 1.2s ease forwards; }
+
+/* move prologue */
+.prologue { animation: movePrologue 0.8s ease 1.2s forwards; }
+
+/* show line-2 */
+.prologue .content-line .line-2::after { animation: showOverflowLine 1.6s ease 1.2s forwards; }
+
+/* show point-3 */
+.prologue .content-line .point-3 { animation: putPoint 1.2s ease-out 2s forwards; }
+
+/* show word-2 */
+.prologue .word-2 div:nth-child(1) p { animation: showWord 0.6s ease-out 1.6s forwards; }
+.prologue .word-2 div:nth-child(2) p { animation: showWord 0.6s ease-out 1.8s forwards; }
+.prologue .word-2 div:nth-child(3) p { animation: showWord 0.6s ease-out 2.0s forwards; }
+
+/* connect next animation */
+.prologue .word-2 { animation: rotateWord2 0.6s ease 2.6s forwards; }
+
+
+/* show episode */
+.episode .message-panel {
+    animation: 
+        roateMessagePanel 0.7s ease 2.6s forwards,
+        moveLeftMessagePanel 0.7s ease 3.6s forwards,
+        moveRightMessagePanel 0.7s ease 4.7s forwards;
+}
+
+.episode .message-panel .message-item:nth-child(1)::after { animation: showBar 0.5s ease 2.8s forwards; }
+.episode .message-panel .message-item:nth-child(1) .char:nth-child(1) { animation: showChar 0.35s ease 2.8s forwards; }
+.episode .message-panel .message-item:nth-child(1) .char:nth-child(2) { animation: showChar 0.35s ease 2.9s forwards; }
+.episode .message-panel .message-item:nth-child(1) .char:nth-child(3) { animation: showChar 0.35s ease 3.0s forwards; }
+.episode .message-panel .message-item:nth-child(1) .text { animation: showText 0.5s ease 3.1s forwards; }
+.episode .message-panel .message-item:nth-child(1) { animation: fadeOut 0.5s ease 3.6s forwards; }
+
+.episode .message-panel .message-item:nth-child(2)::after { animation: showBar 0.5s ease 3.8s forwards; }
+.episode .message-panel .message-item:nth-child(2) .char:nth-child(1) { animation: showChar 0.35s ease 3.8s forwards; }
+.episode .message-panel .message-item:nth-child(2) .char:nth-child(2) { animation: showChar 0.35s ease 3.9s forwards; }
+.episode .message-panel .message-item:nth-child(2) .char:nth-child(3) { animation: showChar 0.35s ease 4.0s forwards; }
+.episode .message-panel .message-item:nth-child(2) .char:nth-child(4) { animation: showChar 0.35s ease 4.1s forwards; }
+.episode .message-panel .message-item:nth-child(2) .text { animation: showText 0.5s ease 4.2s forwards; }
+.episode .message-panel .message-item:nth-child(2) { animation: fadeOut 0.5s ease 4.7s forwards; }
+
+.episode .message-panel .message-item:nth-child(3)::after { animation: showBar 0.5s ease 4.9s forwards; }
+.episode .message-panel .message-item:nth-child(3) .char:nth-child(1) { animation: showChar 0.35s ease 4.9s forwards; }
+.episode .message-panel .message-item:nth-child(3) .char:nth-child(2) { animation: showChar 0.35s ease 5.0s forwards; }
+.episode .message-panel .message-item:nth-child(3) .char:nth-child(3) { animation: showChar 0.35s ease 5.1s forwards; }
+.episode .message-panel .message-item:nth-child(3) .char:nth-child(4) { animation: showChar 0.35s ease 5.2s forwards; }
+.episode .message-panel .message-item:nth-child(3) .text { animation: showText 0.5s ease 5.3s forwards; }
+/* .episode .message-panel .message-item:nth-child(3) { animation: fadeOut 0.5s ease 5.8s forwards; } */
+
+
+/*****************************************************
+    keyframes
+ ****************************************************/
+
+@keyframes showWord {
+    0% { opacity: 0; transform: scale(0.4); }
+    70% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes showLine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0%); }
+}
+
+@keyframes showOverflowLine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes movePrologue {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes putPoint {
+    0%   { transform: scale(0); }
+    70%  { transform: scale(2); }
+    100% { transform: scale(0); }
+}
+
+@keyframes rotateWord2 {
+    from { transform: rotate(0); opacity: 1; }
+    to { transform: rotate(-90deg); opacity: 0; }
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes roateMessagePanel {
+    0% { transform: rotate(90deg); }
+    60% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes showBar {
+    from { width: 300px; opacity: 0; }
+    to { width: 15px; opacity: 1; }
+}
+
+@keyframes showChar {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes showText {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes moveLeftMessagePanel {
+    from { right: 80px; }
+    to { right: calc(100% - 450px); }
+}
+
+@keyframes moveRightMessagePanel {
+    from { right: calc(100% - 450px); }
+    to { right: 80px; }
+}
