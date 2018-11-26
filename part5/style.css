@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#view-box {
+    overflow: hidden;
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: cadetblue;
+}
+
+.section {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+}
+
+/* section 1 */
+
+.section-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.section-1 > div {
+    position: relative;
+    overflow: hidden;
+    width: 450px;
+    height: 100%;
+}
+
+.section-1 > div::before, .section-1 > div::after {
+    content: ""; display: block;
+    position: absolute;
+}
+
+.section-1 > div::after {
+    width: 450px; height: 450px;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0;
+}
+
+.section-1 > div:nth-child(1)::after {
+    background-image: url(./images/pic-1.svg);
+    background-position: center right;
+}
+
+.section-1 > div:nth-child(2)::after {
+    background-image: url(./images/pic-2.svg);
+    background-position: center left;
+}
+
+.section-1 > div:nth-child(3)::after {
+    background-image: url(./images/pic-3.svg);
+    background-position: center;
+}
+
+.section-1 > div::before {
+    width: 100%; height: 100%;
+    background-color: #ffffff;
+    transform: translateY(-100%);
+}
+
+/* section 2 */
+
+.section-2 > div { width: 100%; height: 25%; }
+
+.section-2 > div::before {
+    content: ""; display: block;
+    width: 100%; height: 100%;
+    background: skyblue;
+}
+
+.section-2 > div:nth-child(1)::before,
+.section-2 > div:nth-child(3)::before { transform: translateX(-100%); }
+
+.section-2 > div:nth-child(2)::before,
+.section-2 > div:nth-child(4)::before { transform: translateX(100%); }
+
+.section-2 > p {
+    width: 100%; height: 50px;
+    background-image: url(./images/pic-4.svg);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: auto 75%;
+    position: absolute;
+    top: 0; bottom: 0; right: 20px;
+    margin: auto;
+    opacity: 0;
+}
+
+/* section 3 */
+
+.section-3 > div {
+    position: absolute;
+    width: 100%; height: 50%;
+}
+
+.section-3 > div:first-child { top: 0; }
+
+.section-3 > div:last-child { bottom: 0; }
+
+.section-3 > div:last-child::before,
+.section-3 > div:last-child::after { bottom: 0; }
+
+.section-3 > div::before, .section-3 > div::after {
+    content: ""; display: block;
+    position: absolute;
+    width: 100%;
+}
+
+.section-3 > div::before { background-color: aquamarine; }
+
+.section-3 > div::after { background-color: antiquewhite; }
+
+/* section 4 */
+
+.section-4 > div {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 75%;
+}
+
+.section-4 .role {
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    background-image: url(./images/pic-5.svg);
+    transform: translateY(-100%);
+}
+
+.section-4 .text {
+    width: 100%; height: 80px;
+    top: 0; bottom: 0; margin: auto;
+    background-image: url(./images/pic-6.svg);
+    transform: scale(3);
+    opacity: 0;
+}
+
+.section-4 .end {
+    overflow: hidden;
+    width: 100%; height: 100%;
+    background-color: aliceblue;
+    background-image: url(./images/pic-7.svg);
+    transform: translateX(100%);
+}
+
+.section-4 .end::after {
+    position: absolute;
+    content: ""; display: block;
+    width: 100%; height: 100%;
+    top: -100%; left: 0;
+}
+
+.section-4 .end::after { background-color: coral; }
+
+
+
+/***************************
+    animation
+***************************/
+
+.section-1 > div::after { animation: show-role 0.5s ease 0.5s forwards; }
+.section-1 > div:nth-child(1)::before { animation: show-dot-1 1s ease forwards; }
+.section-1 > div:nth-child(2)::before { animation: show-dot-2 1s ease forwards; }
+.section-1 > div:nth-child(3)::before { animation: show-dot-1 1s ease forwards; }
+
+.section-2 > div:nth-child(1)::before,
+.section-2 > div:nth-child(3)::before { animation: show-strip-1 0.8s ease 1.5s forwards; }
+.section-2 > div:nth-child(2)::before,
+.section-2 > div:nth-child(4)::before { animation: show-strip-2 0.8s ease 1.5s forwards; }
+.section-2 > p { animation: show-strip-text 0.5s ease 3s forwards; }
+
+.section-3 > div::before { animation: show-strip-margin-1 0.5s ease 2.5s forwards; }
+.section-3 > div::after { animation: show-strip-margin-2 0.5s ease 3.5s forwards; }
+
+.section-4 .role { animation: show-role-main 4s ease 4s forwards; }
+.section-4 .text { animation: show-role-text 0.8s ease 6s forwards; }
+.section-4 .end { animation: show-role-end 0.8s ease 7s forwards; }
+.section-4 .end::after { animation: show-role-end-bg 0.5s ease 8s forwards; }
+
+
+/***************************
+    keyframes
+***************************/
+
+@keyframes show-dot-1 {
+    0% { transform: translateY(-100%); }
+    60% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes show-dot-2 {
+    0% { transform: translateY(100%); }
+    60% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+@keyframes show-role {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes show-strip-1 {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    80% { transform: translateX(2%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes show-strip-2 {
+    0% { transform: translateX(100%); }
+    50% { transform: translateX(0); }
+    80% { transform: translateX(-2%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes show-strip-margin-1 {
+    from { height: 0; }
+    to { height: calc(100% - 25px); }
+}
+
+@keyframes show-strip-text {
+    from { opacity: 0; right: 60px; }
+    to { opacity: 1; right: 20px; }
+}
+
+@keyframes show-strip-margin-2 {
+    from { height: 0; }
+    to { height: 100%; }
+}
+
+@keyframes show-role-main {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes show-role-text {
+    from { opacity: 0; transform: scale(3); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes show-role-end {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes show-role-end-bg {
+    from { top: -100%; }
+    to { top: 0; }
+}
