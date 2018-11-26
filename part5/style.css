@@ -28,7 +28,7 @@
 .section-1 > div {
     position: relative;
     overflow: hidden;
-    width: 450px;
+    width: 30vw;
     height: 100%;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .section-1 > div::after {
-    width: 450px; height: 450px;
+    width: 100%; height: 30vw;
     left: 0; right: 0; top: 0; bottom: 0;
     margin: auto;
     background-repeat: no-repeat;
@@ -90,14 +90,16 @@
     background-position: center right;
     background-size: auto 75%;
     position: absolute;
-    top: 0; bottom: 0; right: 20px;
+    top: 0; bottom: 0; right: 0;
     margin: auto;
+    transform: translateX(-60px);
     opacity: 0;
 }
 
 /* section 3 */
 
 .section-3 > div {
+    overflow: hidden;
     position: absolute;
     width: 100%; height: 50%;
 }
@@ -106,18 +108,27 @@
 
 .section-3 > div:last-child { bottom: 0; }
 
-.section-3 > div:last-child::before,
-.section-3 > div:last-child::after { bottom: 0; }
-
 .section-3 > div::before, .section-3 > div::after {
     content: ""; display: block;
     position: absolute;
     width: 100%;
 }
 
-.section-3 > div::before { background-color: aquamarine; }
+.section-3 > div:first-child::before,
+.section-3 > div:first-child::after {
+    transform: translateY(-100%);
+    top: 0;
+}
 
-.section-3 > div::after { background-color: antiquewhite; }
+.section-3 > div:last-child::before,
+.section-3 > div:last-child::after {
+    transform: translateY(100%);
+    bottom: 0;
+}
+
+.section-3 > div::before { height: calc(100% - 25px); background-color: aquamarine; }
+
+.section-3 > div::after { height: 100%; background-color: antiquewhite; }
 
 /* section 4 */
 
@@ -155,7 +166,8 @@
     position: absolute;
     content: ""; display: block;
     width: 100%; height: 100%;
-    top: -100%; left: 0;
+    top: 0; left: 0;
+    transform: translateX(100%);
 }
 
 .section-4 .end::after { background-color: coral; }
@@ -177,8 +189,11 @@
 .section-2 > div:nth-child(4)::before { animation: show-strip-2 0.8s ease 1.5s forwards; }
 .section-2 > p { animation: show-strip-text 0.5s ease 3s forwards; }
 
-.section-3 > div::before { animation: show-strip-margin-1 0.5s ease 2.5s forwards; }
-.section-3 > div::after { animation: show-strip-margin-2 0.5s ease 3.5s forwards; }
+.section-3 > div:first-child::before { animation: show-strip-margin-1 0.5s ease 2.5s forwards; }
+.section-3 > div:last-child::before { animation: show-strip-margin-2 0.5s ease 2.5s forwards; }
+
+.section-3 > div:first-child::after { animation: show-strip-margin-1 0.5s ease 3.5s forwards; }
+.section-3 > div:last-child::after { animation: show-strip-margin-2 0.5s ease 3.5s forwards; }
 
 .section-4 .role { animation: show-role-main 4s ease 4s forwards; }
 .section-4 .text { animation: show-role-text 0.8s ease 6s forwards; }
@@ -222,23 +237,23 @@
 }
 
 @keyframes show-strip-margin-1 {
-    from { height: 0; }
-    to { height: calc(100% - 25px); }
-}
-
-@keyframes show-strip-text {
-    from { opacity: 0; right: 60px; }
-    to { opacity: 1; right: 20px; }
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
 }
 
 @keyframes show-strip-margin-2 {
-    from { height: 0; }
-    to { height: 100%; }
+    from { transform: translateY(100%); }
+    to { transform: translate(0); }
+}
+
+@keyframes show-strip-text {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes show-role-main {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
 }
 
 @keyframes show-role-text {
@@ -252,6 +267,6 @@
 }
 
 @keyframes show-role-end-bg {
-    from { top: -100%; }
-    to { top: 0; }
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }
