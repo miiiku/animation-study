@@ -167,10 +167,9 @@
     content: ""; display: block;
     width: 100%; height: 100%;
     top: 0; left: 0;
+    background-color: coral;
     transform: translateX(100%);
 }
-
-.section-4 .end::after { background-color: coral; }
 
 
 
