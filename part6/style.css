@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.view-box {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: #f6f4e2;
+  user-select: none;
+}
+
+.view-box .text-box {
+  position: relative;
+  width: 100%; height: 100%;
+}
+
+.view-box .text-item {
+  position: absolute;
+  left: 0; right: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: 82px;
+  letter-spacing: 30px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.view-box .text-1 {
+  opacity: 1;
+  background-color: #f6f4e2;
+  color: #e1caae;
+}
+
+.view-box .text-2 {
+  background-color: #f5828c;
+  color: #e1caae;
+}
+
+.view-box .text-3 {
+  background-color: #f6f4e2;
+  color: #f5828c;
+}
+
+.view-box .text-4 {
+  background-color: #f5828c;
+  color: #e1caae;
+}
+
+.view-box .text-5 {
+  background-color: #f6f4e2;
+  color: #e1caae;
+}
+
+.view-box .text-6 {
+  background-color: #f5828c;
+  color: #e1caae;
+}
+
+.view-box .text-3 .dot {
+  position: absolute;
+  left: 0; right: 0; top: -30px;
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #f5828c;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+}
+
+.view-box .text-4 .dot {
+  position: absolute;
+  left: 0; right: 0;
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #e1caae;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+}
+
+.view-box .text-5 .dot {
+  position: absolute;
+  bottom: -30px;
+  left: 0; right: 0;
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #e1caae;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+}
+
+
+.round-box {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+}
+
+.round-box .round-1 {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #e1caae;
+  transform: scale(0);
+}
+
+
+/***************************
+    animation
+***************************/
+.view-box .text-1 .text {
+  animation: scaleOut 0.5s ease forwards;
+}
+
+.view-box .text-2 {
+  animation: show 0.2s ease 0.5s forwards;
+}
+
+.view-box .text-2 .text {
+  animation: text-show 0.5s ease 0.5s forwards;
+}
+
+.view-box .text-3 {
+  animation: show 0.2s ease 1.0s forwards;
+}
+
+.view-box .text-3 .text {
+  animation: text-show 0.5s ease 2.25s forwards;
+}
+
+.view-box .text-3 .dot {
+  animation: bounceTopToBottom 0.5s ease 3.0s forwards;
+}
+
+.view-box .text-4 {
+  animation: 
+    show 0.2s ease 1.0s forwards,
+    toTop 0.5s ease 2.0s forwards;
+}
+
+.view-box .text-4 .text {
+  animation: text-hide 0.5s ease 1.0s forwards;
+}
+
+.view-box .text-4 .dot {
+  animation: bounce 2.0s ease 1.0s forwards;
+}
+
+.view-box .text-5 {
+  animation: show 0.2s ease 3.2s forwards
+}
+
+.view-box .text-5 .text {
+  animation: text-hide 0.5s ease 3.2s forwards;
+}
+
+.view-box .text-5 .dot {
+  animation: bounceBottomToTop 0.5s ease 4.0s forwards;
+}
+
+.view-box .text-6 {
+  animation: show 0.2s ease 4.3s forwards;
+}
+
+.view-box .text-6 .text {
+  animation: text-show 0.5s ease 4.3s forwards;
+}
+
+/* .round-box .round-1 {
+  animation: scaleIn 0.5s ease 5.0s forwards;
+} */
+
+@keyframes show {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes text-show {
+  from { transform: scale(1); }
+  to { transform: scale(1.3); }
+}
+
+@keyframes text-hide {
+  from { transform: scale(1.3); }
+  to { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0% { bottom: 40%; }
+  40% { bottom: 0; }
+  100% { bottom: 100%; }
+}
+
+@keyframes toTop {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes bounceTopToBottom {
+  from { opacity: 1; top: -30px; }
+  to { opacity: 0.5; top: 70%; }
+}
+
+@keyframes bounceBottomToTop {
+  from { opacity: 1; bottom: -30px; }
+  to { opacity: 0.5; bottom: 70%; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes scaleOut {
+  from { transform: scale(1.3); }
+  to { transform: scale(1.0); }
+}
